@@ -1,7 +1,7 @@
 const rootStyles = getComputedStyle(document.documentElement);
 
 const NAV_TRANSPARENT = rootStyles.getPropertyValue('--nav-transparent');
-const NAV_SOLID = rootStyles.getPropertyValue('--bg-primary');
+const NAV_SOLID = rootStyles.getPropertyValue('--navbar-scroll-bg');
 
 const nav = document.querySelector(".custom-nav");
 

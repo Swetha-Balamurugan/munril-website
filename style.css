@@ -10,8 +10,23 @@
     rgba(11,29,42,0.6),
     rgba(7,21,32,0.8)
   ); 
+  --division-overlay: linear-gradient(
+    rgba(11,29,42,0.55),
+    rgba(7,21,32,0.75)
+  );
+
+  --division-overlay-hover: linear-gradient(
+    rgba(11,29,42,0),
+    rgba(7,21,32,0)
+  );
 
  --nav-transparent: rgba(7,21,32,0.6);
+ --navbar-scroll-bg: rgba(5, 57, 95, 0.85);
+
+  --image-overlay: linear-gradient(
+    rgba(11,29,42,0.4),
+    rgba(7,21,32,0.6)
+  );
 
 --accent-main: #f5880b;
 --accent-glow: #FFB703;
@@ -89,6 +104,7 @@ body{
   color: var(--text-body) !important;
   position: relative;
   z-index: 1;
+  cursor: pointer;
 }
 
 .nav-link::after {
@@ -181,23 +197,51 @@ body{
   padding: 40px;
 }
 
-.glass-card{
-  background: var(--bg-primary);
-  border: 1px solid var(--glass-border);
+.division-card{
+  position: relative;
   border-radius: 16px;
-  padding: 20px;
-  transition: 0.3s;
+  overflow: hidden;
+  height: 220px;
+  cursor: pointer;
 }
 
-.glass-card:hover{
-  transform: translateY(-8px);
+.division-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s ease;
+}
+
+.division-overlay{
+  position: absolute;
+  inset: 0;
+  background: var(--division-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: 0.4s ease;
+}
+
+.division-overlay h6{
+  color: var(--text-heading);
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+.division-card:hover .division-overlay{
+  background: var(--division-overlay-hover);
+}
+
+.division-card:hover .division-overlay h6{
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.division-card:hover{
+  transform: scale(1.06);
   box-shadow: var(--card-shadow);
-}
-
-.glass-card i{
-  font-size: 70px;
-  color: var(--accent-main);
-  margin-bottom: 10px;
 }
 
 .section-title{
@@ -205,6 +249,20 @@ body{
   position: relative;
   display: inline-block;
   padding: 0 12px;
+}
+
+.overlay-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  color: var(--text-white);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 10px;
+  z-index: 2;
 }
 
 .section-title::before,
