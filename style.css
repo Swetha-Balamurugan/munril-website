@@ -244,11 +244,19 @@ body{
   box-shadow: var(--card-shadow);
 }
 
+.divisions,
+.projects-section {
+  padding: var(--section-padding) 0;
+}
+
 .section-title{
   font-size: 36px;
   position: relative;
   display: inline-block;
-  padding: 0 12px;
+  /* padding: 0 12px; */
+  margin: 0 0 40px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .overlay-text{
@@ -263,6 +271,11 @@ body{
   text-align: center;
   padding: 0 10px;
   z-index: 2;
+}
+
+.glass-box,
+.projects-section .row {
+  margin-top: 10px;
 }
 
 .section-title::before,
