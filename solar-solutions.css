@@ -2,14 +2,24 @@
   --primary: #0B1F3A;
   --primary-dark: #071520;
   --accent: #FFC107;
+  --accent-main: #f5880b;
   --white: #ffffff;
   --light-bg: #F5F7FA;
+  --glass-bg: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.1);
+  --blur: blur(10px);
   --overlay:linear-gradient(
     to top,
     rgba(0, 0, 0, 0.6),   
     rgba(0, 0, 0, 0.2),   
     rgba(0, 0, 0, 0.05)   
   );
+  --btn-glow-bg: linear-gradient(135deg, var(--accent-main), var(--accent));
+  --btn-outline-border: 1px solid var(--light-bg);
+  --btn-outline-bg: var(--glass-bg);
+   --btn-radius: 4px;
+  --btn-padding: 5px;
+  --btn-hover-transform: translateY(-2px) scale(1.03);
   --overlay-light-bg: linear-gradient(
     rgba(81, 77, 77, 0.85),
     rgba(208, 197, 197, 0.85)
@@ -20,6 +30,9 @@
     rgba(11, 31, 58, 0.3)
   );
   --cta-gradient: linear-gradient(135deg, #0B1F3A, #071520);
+
+  --nav-transparent: rgba(7,21,32,0.6);
+  --navbar-scroll-bg: rgba(5, 57, 95, 0.85);
 
   --text-dark: #1A1A1A;
   --text-light: #D1D5DB;
@@ -35,27 +48,68 @@ body {
 }
 
 
-.navbar {
-  background: var(--primary);
+.custom-nav{
+  background: var(--nav-transparent);
+  backdrop-filter: var(--blur);
 }
 
-.navbar-brand {
-  font-weight: 700;
-  color:var(--white) !important;
+.navbar-nav .nav-link {
+  display: inline-block !important;  
+  width: auto !important;       
 }
 
-.nav-link {
+.logo-icon{
+  color: var(--accent-main);
+}
+
+.logo-text{
+  color: var(--white);
+}
+
+.navbar-nav {
+  gap: 12px;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler {
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.navbar-toggler:not(.collapsed) {
+  border: 2px solid var(--white);
+}
+
+.navbar-toggler:hover {
+  border: 2px solid var(--light-bg);
+}
+
+.nav-link{
   color: var(--white) !important;
-  margin: 0 10px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
 }
 
-.nav-btn {
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  z-index: 0;
   background: var(--accent);
-  border-radius: var(--radius);
-  padding: 6px 15px;
-  text-decoration: none;
+  transition: width 0.3s ease;
 }
 
+.nav-link:hover::after {
+  width: 100%;
+}
 
 .hero {
   background: url('./Images/sshetobg.jfif') center/cover no-repeat;
@@ -74,17 +128,40 @@ body {
   position: relative;
   color: var(--white);
   max-width: 550px;
+  text-align:left !important;
 }
 
-.btn-yellow {
-  background: var(--accent);
-  border: none;
+.hero-buttons{
+  display: flex;
+  gap: 15px;
 }
 
-.btn-outline-light {
-  border: 1px solid var(--white);
+.btn-glow {
+  background: var(--btn-glow-bg);
+  color: var(--white) ! important;
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding);
+  transition: 0.3s;
 }
 
+.btn-glow:hover {
+  transform: var(--btn-hover-transform);
+}
+
+.btn-outline-custom {
+  border: var(--btn-outline-border);
+  background: var(--btn-outline-bg);
+  color: var(--white);
+  backdrop-filter: var(--blur);
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding);
+  transition: 0.3s;
+}
+
+.btn-outline-custom:hover {
+  transform: var(--btn-hover-transform);
+  border-color: var(--white);
+}
 
 .stats {
   display: flex;
@@ -335,4 +412,77 @@ body {
   background: var(--cta-gradient);
   color: var(--white);
   padding: 60px 0;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+   .navbar-nav {
+    text-align: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .btn-glow {
+    width: 100%; 
+  }
+
+  .hero {
+    height: auto;
+    padding: 100px 0 60px;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .stat-item {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .stat-item::after {
+    display: none;
+  }
+
+  .solution-card {
+    height: 200px;
+  }
+
+   .benefits-row {
+    flex-wrap: wrap;
+  }
+
+  .benefit-item {
+    flex: 0 0 50%; 
+    margin-bottom: 20px;
+  }
+
+  .benefit-item::after {
+    display: none;
+  }
+
+  .benefit-item {
+    flex: 0 0 100%; 
+  }
 }
