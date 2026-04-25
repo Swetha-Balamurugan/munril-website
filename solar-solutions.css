@@ -40,7 +40,11 @@
   --radius: 10px;
   --shadow: 0 10px 25px rgba(0,0,0,0.08);
   --section-padding: 80px;
-  --mobile-padding: 40px;
+  --mobile-padding: 50px;
+  --heading-margin-bottom: 30px;
+  --mobile-heading-margin-bottom: 24px;
+
+  --section-gap: 20px;
   --font: 'Poppins', sans-serif;
 }
 
@@ -221,6 +225,7 @@ section {
   justify-content: center;
   width: 100%;
   gap: 10px;
+  margin-bottom: var(--heading-margin-bottom)
 }
 
 .section-heading::before,
@@ -428,6 +433,14 @@ section {
   padding: 60px 0;
 }
 
+.cta .section-heading{
+  margin-bottom: var(--heading-margin-bottom);
+}
+
+.cta p{
+  margin-bottom: var(--section-gap);
+}
+
 .cta-buttons {
   display: flex;
   gap: 15px;
@@ -465,7 +478,7 @@ section {
 
   .hero-buttons .btn {
     width: 100%;
-    max-width: 280px;
+
   }
 
   section {
@@ -552,6 +565,22 @@ section {
 
   .benefit-item:last-child::before {
     display: none;
+  }
+
+   section{
+    padding: var(--mobile-section-padding) 0;
+  }
+
+  .section-heading{
+    margin-bottom: var(--mobile-heading-margin-bottom);
+  }
+
+  .cta .section-heading{
+    margin-bottom: var(--mobile-heading-margin-bottom);
+  }
+
+  .cta p{
+    margin-bottom: 24px;
   }
 
  .cta-buttons {
