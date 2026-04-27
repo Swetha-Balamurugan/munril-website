@@ -57,7 +57,6 @@
 --button-padding: 5px;
 }
 
-
 body{
   font-family: 'Poppins', sans-serif;
   background: var(--bg-overlay);
@@ -195,20 +194,16 @@ body{
 
 .section-title span {
   padding: 0 15px;
-  white-space:nowrap;
 }
 
 
 .section-title::before,
 .section-title::after {
   content: "";
-  flex:0 0 70px;
+  width: 60px; 
   height: 1px;
-  background:linear-gradient(
-to right,
-transparent,
-var(--accent-glow)
-);
+  background: var(--accent-glow);
+  opacity: 0.7;
 }
 
 
@@ -493,18 +488,13 @@ width:100%;
 
 .section-title{
 font-size:28px;
-text-align:center;
-gap:10px;
-}
-
-.section-title span{
 white-space:normal;
+text-align:center;
 }
 
 .section-title:before,
 .section-title:after{
 width:35px;
-flex:0 0 50px;
 }
 
 .card-box,
