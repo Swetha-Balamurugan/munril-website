@@ -196,6 +196,7 @@ body{
 
 .glass-box{
   border-radius: 16px;
+  padding:20px 30px; 
 }
 
 .division-card{
@@ -282,7 +283,7 @@ body{
 .section-title::after{
   content:"";
   position:absolute;
-  height:1px;
+  height:0.8px;
   width:100px;
   top:50%;
   background: linear-gradient(to right, transparent, var(--accent-main), transparent);
@@ -391,9 +392,23 @@ body{
   .hero h1{font-size:32px;}
   .section-title{font-size:24px;}
   .hero-buttons{flex-direction:column;}
+  .glass-box{
+      padding-top: 35px;
+  }
     .divisions .row{
       padding-left: 16px;
       padding-right: 16px;
+      margin-top: 18px;
+  }
+   .section-title{
+      font-size:20px;
+      padding:0 8px;
+      letter-spacing:0.5px;
+  }
+
+  .section-title::before,
+  .section-title::after{
+      width:55px;   /* reduced so lines fit */
   }
 
 }
