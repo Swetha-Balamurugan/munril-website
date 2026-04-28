@@ -126,19 +126,24 @@ body{
 }
 
 .hero{
-  height: 100vh;
-  background: var(--about-overlay), url('./Images/Solarpanel.jpg');
-  background-size: cover;
-  background-position: center;
+height:100vh;
+background: var(--about-overlay), url('./Images/Solarpanel.jpg');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
 }
 
 .hero h1{
-  font-size: 56px;
-  line-height: 1.2;
+font-size:56px;
+line-height:1.2;
+max-width:650px;
 }
 
 .hero p{
-  color: var(--text-body);
+color:var(--text-body);
+max-width:560px;
+margin-top:18px;
 }
 
 .hero-buttons{
@@ -408,7 +413,96 @@ body{
 
   .section-title::before,
   .section-title::after{
-      width:55px;   /* reduced so lines fit */
+      width:55px; 
   }
+
+  .hero .container,
+.about-section .container,
+.divisions .container-fluid,
+.projects-section .container-fluid{
+padding-left:22px;
+padding-right:22px;
+}
+
+.hero{
+padding-left:8px;
+padding-right:8px;
+}
+
+.hero h1{
+font-size:32px;
+line-height:1.35;
+margin-bottom:18px;
+max-width:95%;
+}
+
+.hero p{
+max-width:92%;
+margin-bottom:22px;
+}
+
+.hero-buttons{
+flex-direction:column;
+gap:14px;
+width:100%;
+}
+
+.hero-buttons .btn{
+width:100%;
+}
+
+.about-section{
+padding-left:8px;
+padding-right:8px;
+}
+
+.about-section h2,
+.about-section h5,
+.about-section p{
+max-width:92%;
+}
+
+.about-title::after{
+width:180px;  
+}
+
+.section-title{
+font-size:22px;
+padding:0 16px;
+margin-top:24px;
+margin-bottom:28px;
+}
+
+.section-title::before,
+.section-title::after{
+width:65px;
+}
+
+.glass-box{
+padding:30px 18px 0;
+}
+
+.division-card{
+margin-left:6px;
+margin-right:6px;
+}
+
+.division-overlay h6{
+padding-left:18px;
+padding-right:18px;
+line-height:1.35;
+}
+
+.projects-section{
+padding-left:10px;
+padding-right:10px;
+}
+
+.project-col{
+padding-left:18px;
+padding-right:18px;
+margin-bottom:24px;
+}
+  
 
 }

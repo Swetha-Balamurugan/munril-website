@@ -482,7 +482,14 @@ section {
   }
 
   section {
-    padding: var(--mobile-padding) 0;
+    padding: var(--mobile-padding) 40px;
+
+  }
+
+   .container,
+  .container-fluid{
+    padding-left:24px !important;
+    padding-right:24px !important;
   }
 
   .section-heading {
@@ -591,6 +598,51 @@ section {
   .cta-buttons .btn {
     width: 100%;
     text-align: center;
+  }
+
+  .section-heading{
+  padding-left:12px;
+  padding-right:12px;
+  gap:8px;
+}
+
+.section-light{
+   padding-top:60px;
+}
+
+.section-heading::before,
+.section-heading::after{
+  min-width:40px;
+}
+
+.section-heading h2{
+  font-size:18px;
+}
+
+.container{
+  padding-left:16px;
+  padding-right:16px;
+}
+
+.py-5 .container{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .py-5 .row{
+    margin-left:0;
+    margin-right:0;
+    row-gap:18px;
+  }
+
+  .py-5 .col-md-4{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .solution-card{
+    width:100%;
+    margin:0 auto;
   }
 
 }
