@@ -209,7 +209,6 @@ Dedicated support for all your requirements
 
 </section>
 
-<!-- SERVICES SECTION -->
 <section class="services-section">
 
 <div class="container">
@@ -303,6 +302,116 @@ and longer equipment life.
 
 </section>
 
+<section class="contact-section">
+  <div class="container">
+
+    <div class="text-center">
+      <h2 class="section-title">
+        CONTACT US
+      </h2>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+
+      <div class="col-lg-7">
+        <div class="contact-form-box">
+
+          <form id="contactForm">
+
+            <div class="row g-4">
+
+              <div class="col-md-6">
+                <input 
+                  type="text"
+                  id="name"
+                  class="form-control custom-input"
+                  placeholder="Your Name">
+
+                <small class="error-text" id="nameError"></small>
+              </div>
+
+              <div class="col-md-6">
+                <input 
+                  type="email"
+                  id="email"
+                  class="form-control custom-input"
+                  placeholder="Your Email">
+
+                <small class="error-text" id="emailError"></small>
+              </div>
+
+              <div class="col-md-6">
+                <input 
+                  type="tel"
+                  id="phone"
+                  class="form-control custom-input"
+                  placeholder="Phone Number"
+                  maxlength="10">
+
+                <small class="error-text" id="phoneError"></small>
+              </div>
+
+              <div class="col-md-6">
+                <select 
+                  id="projectType"
+                  class="form-select custom-input">
+
+                  <option value="">
+                    Select Project Type
+                  </option>
+
+                  <option>
+                    Mother Board Repair
+                  </option>
+
+                  <option>
+                    Spare Parts Supply
+                  </option>
+
+                  <option>
+                    Maintenance Services
+                  </option>
+
+                </select>
+
+                <small class="error-text" id="projectError"></small>
+              </div>
+
+              <div class="col-12">
+                <textarea 
+                  id="message"
+                  class="form-control custom-input"
+                  rows="6"
+                  placeholder="Your Message"></textarea>
+
+                <small class="error-text" id="messageError"></small>
+              </div>
+
+              <div class="col-12">
+                <button 
+type="button"
+class="btn btn-glow send-btn"
+id="submitBtn">
+
+Send Message
+
+</button>
+              </div>
+
+              <div class="col-12 text-center">
+                <div id="successMessage" class="success-message"></div>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <section class="about-section">
 
@@ -370,6 +479,6 @@ medical electronics.
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="./medical.js"></script>
 </body>
 </html>

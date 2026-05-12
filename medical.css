@@ -3,6 +3,7 @@
 --primary:#1f4fd6;
 --primary-dark:#153eaf;
 --secondary:#071c5a;
+--error-text:#ff7070;
 
 --text:#121826;
 --text-light:#6b7280;
@@ -32,7 +33,7 @@ rgba(255,255,255,0) 100%
 
 --nav-bg:rgba(255,255,255,0.92);
 --nav-shadow:0 10px 35px rgba(0,0,0,0.05);
-
+--section-padding: 80px;
 }
 
 *{
@@ -349,8 +350,70 @@ line-height:1.9;
 color:var(--text-light);
 }
 
+.contact-section{
+padding:var(--section-padding) 0;
+}
 
-/* ABOUT */
+.contact-form-box{
+background:var(--glass-bg);
+border:1px solid var(--primary-dark);
+backdrop-filter:var(--blur);
+border-radius:16px;
+padding:40px;
+}
+
+.custom-input{
+background:var(--white);
+border:1px solid var(--primary-dark);
+color:var(--text);
+padding:14px 18px;
+border-radius:10px;
+transition:0.3s;
+}
+
+.custom-input::placeholder{
+color:var(--text);
+}
+
+.custom-input:focus{
+background:var(--bg-soft);
+border-color:var(--primary-dark);
+box-shadow:none;
+color:var(--text);
+}
+
+textarea.custom-input{
+resize:none;
+}
+
+select.custom-input{
+height:54px;
+}
+
+.input-error{
+border:1px solid var(--primary-dark) !important;
+}
+
+.error-text{
+display:block;
+margin-top:8px;
+font-size:14px;
+color:var(--error-text);
+font-weight:500;
+}
+
+.success-message{
+margin-top:18px;
+font-size:15px;
+font-weight:600;
+color:var(--accent-highlight);
+text-align:center;
+}
+
+.custom-input.is-invalid{
+border-color:var(--primary);
+}
+
 
 .about-section{
 padding:90px 0;
@@ -537,6 +600,10 @@ background:var(--primary-dark);
 
 .service-icon i{
 color:var(--white);
+}
+
+.contact-form-box{
+padding:24px;
 }
 
 }

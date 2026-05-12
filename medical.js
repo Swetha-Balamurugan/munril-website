@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded",function(){
 
-const form=document.getElementById("contactForm");
+const submitBtn=
+document.getElementById("submitBtn");
 
-form.addEventListener("submit",function(e){
+submitBtn.addEventListener("click",function(e){
 
-e.preventDefault(); 
+e.preventDefault();
 
 let valid=true;
 
@@ -14,6 +15,8 @@ const email=document.getElementById("email");
 const project=document.getElementById("projectType");
 const message=document.getElementById("message");
 
+const successMessage=
+document.getElementById("successMessage");
 
 const fields=[
 name,
@@ -31,6 +34,8 @@ field.nextElementSibling.textContent="";
 
 });
 
+successMessage.textContent="";
+
 fields.forEach(field=>{
 
 if(field.value.trim()===""){
@@ -46,7 +51,6 @@ valid=false;
 
 });
 
-
 const phoneValue=phone.value.trim();
 
 if(
@@ -57,9 +61,10 @@ phoneValue!=="" &&
 phone.classList.add("input-error");
 
 phone.nextElementSibling.textContent=
-"Phone number must be 10 digits";
+"Enter valid 10 digit number";
 
 valid=false;
+
 }
 
 const emailPattern=
@@ -81,9 +86,16 @@ valid=false;
 
 if(valid){
 
-alert("Successfully Submitted!");
+successMessage.textContent=
+"Successfully Submitted!";
 
-form.reset();
+document.getElementById("contactForm").reset();
+
+setTimeout(function(){
+
+successMessage.textContent="";
+
+},4000);
 
 }
 
