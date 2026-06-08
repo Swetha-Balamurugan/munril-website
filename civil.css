@@ -433,6 +433,14 @@ padding:var(--button-padding);
 font-size:18px;
 }
 
+.success-message{
+margin-top:15px;
+font-size:15px;
+font-weight:600;
+color:var(--accent-highlight);
+text-align:center;
+}
+
 .error-msg{
 color:var(--error-text);
 font-size:13px;

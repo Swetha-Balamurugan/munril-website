@@ -1,92 +1,131 @@
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
 
-const form=document.getElementById("contactForm");
+  emailjs.init({
+    publicKey: "l9DvAhL18EdMfHAxv"
+  });
 
-form.addEventListener("submit",function(e){
+  const form = document.getElementById("contactForm");
 
-e.preventDefault(); 
+  form.addEventListener("submit", function (e) {
 
-let valid=true;
+    e.preventDefault();
 
-const name=document.getElementById("name");
-const phone=document.getElementById("phone");
-const email=document.getElementById("email");
-const project=document.getElementById("projectType");
-const message=document.getElementById("message");
+    console.log("Form Submitted");
 
+    let valid = true;
 
-const fields=[
-name,
-phone,
-email,
-project,
-message
-];
+    const name = document.getElementById("name");
+    const phone = document.getElementById("phone");
+    const email = document.getElementById("email");
+    const project = document.getElementById("projectType");
+    const message = document.getElementById("message");
 
-fields.forEach(field=>{
+    const fields = [
+      name,
+      phone,
+      email,
+      project,
+      message
+    ];
 
-field.classList.remove("input-error");
+    fields.forEach(field => {
 
-field.nextElementSibling.textContent="";
+      field.classList.remove("input-error");
 
-});
+      if (field.nextElementSibling) {
+        field.nextElementSibling.textContent = "";
+      }
 
-fields.forEach(field=>{
+    });
 
-if(field.value.trim()===""){
+    fields.forEach(field => {
 
-field.classList.add("input-error");
+      if (field.value.trim() === "") {
 
-field.nextElementSibling.textContent=
-"This field cannot be empty";
+        field.classList.add("input-error");
 
-valid=false;
+        if (field.nextElementSibling) {
+          field.nextElementSibling.textContent =
+            "This field cannot be empty";
+        }
 
-}
+        valid = false;
+      }
 
-});
+    });
 
+    if (
+      phone.value.trim() !== "" &&
+      !/^\d{10}$/.test(phone.value.trim())
+    ) {
 
-const phoneValue=phone.value.trim();
+      phone.classList.add("input-error");
 
-if(
-phoneValue!=="" &&
-!/^\d{10}$/.test(phoneValue)
-){
+      phone.nextElementSibling.textContent =
+        "Phone number must be 10 digits";
 
-phone.classList.add("input-error");
+      valid = false;
+    }
 
-phone.nextElementSibling.textContent=
-"Phone number must be 10 digits";
+    const emailPattern =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-valid=false;
-}
+    if (
+      email.value.trim() !== "" &&
+      !emailPattern.test(email.value.trim())
+    ) {
 
-const emailPattern=
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      email.classList.add("input-error");
 
-if(
-email.value.trim()!=="" &&
-!emailPattern.test(email.value)
-){
+      email.nextElementSibling.textContent =
+        "Enter valid email address";
 
-email.classList.add("input-error");
+      valid = false;
+    }
 
-email.nextElementSibling.textContent=
-"Enter valid email address";
+    if (!valid) {
+    
+    }
 
-valid=false;
+    console.log("Before EmailJS");
 
-}
+    emailjs.send(
+      "service_am9izcf",
+      "template_zr48iuu",
+      {
+        name: name.value,
+        phone: phone.value,
+        email: email.value,
+        projectType: project.value,
+        message: message.value
+      }
+    )
 
-if(valid){
+   .then(function () {
+  console.log("EMAIL SUCCESS");
 
-alert("Successfully Submitted!");
+  document.getElementById("successMessage").textContent =
+    "Successfully Submitted!";
 
-form.reset();
+  form.reset();
 
-}
+  setTimeout(function () {
+    document.getElementById("successMessage").textContent = "";
+  }, 4000);
+})
 
-});
+    .catch(function (error) {
+console.log("EMAIL FAILED", error);
+      console.log(error);
+
+      successMessage.textContent =
+        "Failed to send message.";
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Send Message";
+
+    });
+
+  });
 
 });

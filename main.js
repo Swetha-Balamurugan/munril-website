@@ -1,119 +1,175 @@
-const rootStyles = getComputedStyle(document.documentElement);
+console.log("JS Loaded");
+document.addEventListener("DOMContentLoaded", function () {
 
-const NAV_TRANSPARENT = rootStyles.getPropertyValue('--nav-transparent');
-const NAV_SOLID = rootStyles.getPropertyValue('--navbar-scroll-bg');
+  emailjs.init({
+    publicKey: "l9DvAhL18EdMfHAxv"
+  });
 
-const nav = document.querySelector(".custom-nav");
+  const rootStyles = getComputedStyle(document.documentElement);
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    nav.style.background = NAV_SOLID;
-  } else {
-    nav.style.background = NAV_TRANSPARENT;
-  }
-});
+  const NAV_TRANSPARENT =
+    rootStyles.getPropertyValue('--nav-transparent');
 
-document.addEventListener("DOMContentLoaded",function(){
+  const NAV_SOLID =
+    rootStyles.getPropertyValue('--navbar-scroll-bg');
 
-const submitBtn=
-document.getElementById("submitBtn");
+  const nav =
+    document.querySelector(".custom-nav");
 
-submitBtn.addEventListener("click",function(e){
+  window.addEventListener("scroll", () => {
 
-e.preventDefault();
+    if (window.scrollY > 50) {
+      nav.style.background = NAV_SOLID;
+    }
+    else {
+      nav.style.background = NAV_TRANSPARENT;
+    }
 
-let valid=true;
+  });
 
-const name=document.getElementById("name");
-const phone=document.getElementById("phone");
-const email=document.getElementById("email");
-const project=document.getElementById("projectType");
-const message=document.getElementById("message");
+  const submitBtn =
+    document.getElementById("submitBtn");
 
-const successMessage=
-document.getElementById("successMessage");
+  submitBtn.addEventListener("click", function (e) {
+console.log("Button Clicked");
+    e.preventDefault();
 
-const fields=[
-name,
-phone,
-email,
-project,
-message
-];
+    let valid = true;
 
-fields.forEach(field=>{
+    const name =
+      document.getElementById("name");
 
-field.classList.remove("input-error");
+     const phone =
+        document.getElementById("phone");
 
-field.nextElementSibling.textContent="";
+    const email =
+      document.getElementById("email");
 
-});
+    const project =
+      document.getElementById("projectType");
 
-successMessage.textContent="";
+    const message =
+      document.getElementById("message");
 
-fields.forEach(field=>{
+    const successMessage =
+      document.getElementById("successMessage");
 
-if(field.value.trim()===""){
+    const fields = [
+      name,
+      phone,
+      email,
+      project,
+      message
+    ];
 
-field.classList.add("input-error");
+    fields.forEach(field => {
 
-field.nextElementSibling.textContent=
-"This field cannot be empty";
+      field.classList.remove("input-error");
 
-valid=false;
+      if (field.nextElementSibling) {
+        field.nextElementSibling.textContent = "";
+      }
 
-}
+    });
 
-});
+    successMessage.textContent = "";
 
-const phoneValue=phone.value.trim();
+    fields.forEach(field => {
 
-if(
-phoneValue!=="" &&
-!/^\d{10}$/.test(phoneValue)
-){
+      if (field.value.trim() === "") {
 
-phone.classList.add("input-error");
+        field.classList.add("input-error");
 
-phone.nextElementSibling.textContent=
-"Enter valid 10 digit number";
+        if (field.nextElementSibling) {
+          field.nextElementSibling.textContent =
+            "This field cannot be empty";
+        }
 
-valid=false;
+        valid = false;
+      }
 
-}
+    });
 
-const emailPattern=
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (
+      phone.value.trim() !== "" &&
+      !/^\d{10}$/.test(phone.value.trim())
+    ) {
 
-if(
-email.value.trim()!=="" &&
-!emailPattern.test(email.value)
-){
+      phone.classList.add("input-error");
 
-email.classList.add("input-error");
+      phone.nextElementSibling.textContent =
+        "Enter valid 10 digit number";
 
-email.nextElementSibling.textContent=
-"Enter valid email address";
+      valid = false;
+    }
 
-valid=false;
+    const emailPattern =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-}
+    if (
+      email.value.trim() !== "" &&
+      !emailPattern.test(email.value.trim())
+    ) {
 
-if(valid){
+      email.classList.add("input-error");
 
-successMessage.textContent=
-"Successfully Submitted!";
+      email.nextElementSibling.textContent =
+        "Enter valid email address";
 
-document.getElementById("contactForm").reset();
+      valid = false;
+    }
 
-setTimeout(function(){
+    if (!valid) {
+      return;
+    }
 
-successMessage.textContent="";
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Sending...";
+console.log("Before EmailJS");
+    emailjs.send(
+      "service_am9izcf",
+      "template_zr48iuu",
+      {
+        name: name.value,
+        phone: phone.value,
+        email: email.value,
+        projectType: project.value,
+        message: message.value
+      }
+    )
 
-},4000);
+    .then(function () {
+console.log("EMAIL SUCCESS");
+      successMessage.textContent =
+        "Successfully Submitted!";
 
-}
+      document
+        .getElementById("contactForm")
+        .reset();
 
-});
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Send Message";
+
+      setTimeout(function () {
+
+        successMessage.textContent = "";
+
+      }, 4000);
+
+    })
+
+    .catch(function (error) {
+console.log("EMAIL FAILED", error);
+      console.log(error);
+
+      successMessage.textContent =
+        "Failed to send message.";
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Send Message";
+
+    });
+
+  });
 
 });

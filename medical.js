@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
-
+ emailjs.init({
+    publicKey: "l9DvAhL18EdMfHAxv"
+  });
 const submitBtn=
 document.getElementById("submitBtn");
 
@@ -83,22 +85,57 @@ email.nextElementSibling.textContent=
 valid=false;
 
 }
+if (!valid) {
+      return;
+    }
 
-if(valid){
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Sending...";
+console.log("Before EmailJS");
+    emailjs.send(
+      "service_am9izcf",
+      "template_zr48iuu",
+      {
+        name: name.value,
+        phone: phone.value,
+        email: email.value,
+        projectType: project.value,
+        message: message.value
+      }
+    )
 
-successMessage.textContent=
-"Successfully Submitted!";
+    .then(function () {
+console.log("EMAIL SUCCESS");
+      successMessage.textContent =
+        "Successfully Submitted!";
 
-document.getElementById("contactForm").reset();
+      document
+        .getElementById("contactForm")
+        .reset();
 
-setTimeout(function(){
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Send Message";
 
-successMessage.textContent="";
+      setTimeout(function () {
 
-},4000);
+        successMessage.textContent = "";
 
-}
+      }, 4000);
 
-});
+    })
+
+    .catch(function (error) {
+console.log("EMAIL FAILED", error);
+      console.log(error);
+
+      successMessage.textContent =
+        "Failed to send message.";
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Send Message";
+
+    });
+
+  });
 
 });
